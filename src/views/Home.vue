@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col-12 text-right">
+        <button v-if="!carForm" @click="carForm = true" class="btn btn-success">Add-Car</button>
+        <button v-else @click="carForm = false" class="btn btn-danger">cancel</button>
+      </div>
+      <div class="col-12">
+        <create-car v-if="carForm" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <cars />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Cars from "@/components/Cars";
+import CreateCar from "@/components/CreateCar";
 export default {
-  name: 'Home',
+  name: "Home",
+  data() {
+    return {
+      carForm: false
+    };
+  },
   components: {
-    HelloWorld
+    Cars,
+    CreateCar
   }
-}
+};
 </script>

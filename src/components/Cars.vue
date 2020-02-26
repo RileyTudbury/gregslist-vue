@@ -5,7 +5,9 @@
       <label for="filter-price">Max Price</label>
       <input type="number" id="filter-price" v-model="maxPrice" />
     </div>
-    <car v-for="(carObj, index) in cars" :key="carObj._id" :carData="carObj" :carIndex="index" />
+    <div class="row">
+      <car v-for="(carObj, index) in cars" :key="carObj._id" :carData="carObj" :carIndex="index" />
+    </div>
   </div>
 </template>
 

@@ -1,9 +1,7 @@
 <template>
-  <div class="car col-3">
+  <div class="car col-2">
     <div class="card">
-      <router-link :to="{ name: 'CarDetails', params: { carId: this.carData._id } }">
-        <img :src="carData.imgUrl" class="card-img-top" />
-      </router-link>
+      <img :src="carData.imgUrl" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">{{ carData.make }} - {{ carData.model }}</h5>
       </div>
@@ -31,5 +29,10 @@ export default {
 <style scoped>
 .car {
   cursor: pointer;
+  color: black;
+}
+img {
+  max-height: 40vh;
+  max-width: auto;
 }
 </style>

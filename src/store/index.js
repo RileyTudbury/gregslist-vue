@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from '../router'
 
 let _api = axios.create({
-  baseURL: '//bcw-sandbox.herokuapp.com/api/',
+  baseURL: '//bcw-sandbox.herokuapp.com/api',
   timeout: 3000
 })
 
@@ -13,11 +13,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cars: [],
-    activeCar: []
+    activeCar: [],
+    houses: [],
+    activeHouse: []
   },
   mutations: {
     setCars(state, cars) {
       state.cars = cars
+    },
+
+    setHouses(state, houses) {
+      state.houses = houses
     },
 
     addCar(state, car) {
@@ -30,14 +36,29 @@ export default new Vuex.Store({
 
     setActiveCar(state, car) {
       state.activeCar = car
+    },
+
+    setActiveHouse(state, house) {
+      state.activeHouse = house
     }
+
+
   },
 
   actions: {
     async getCars({ commit, dispatch }) {
       try {
-        let res = await _api.get("")
+        let res = await _api.get("cars")
         commit("setCars", res.data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async getHouses({ commit, dispatch }) {
+      try {
+        let res = await _api.get("houses")
+        commit("setHouses", res.data.data)
       } catch (error) {
         console.error(error)
       }
@@ -47,6 +68,16 @@ export default new Vuex.Store({
       try {
         let res = await _api.get(id)
         commit("setActiveCar", res.data.data)
+      } catch (error) {
+        console.error(error)
+        router.push({ name: "Home" })
+      }
+    },
+
+    async getHouseById({ commit, dispatch }, id) {
+      try {
+        let res = await _api.get(id)
+        commit("setActiveHouse", res.data.data)
       } catch (error) {
         console.error(error)
         router.push({ name: "Home" })
@@ -72,6 +103,16 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+
+    async deleteHouse({ commit, dispatch }, houseId) {
+      try {
+        let res = await _api.delete(houseId)
+        commit("removeHouse", houseId)
+        commit("setActiveHouse", {})
+      } catch (error) {
+        console.error(error)
+      }
     }
-  },
+  }
 })

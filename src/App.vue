@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="container-fluid" id="app">
     <div class="row">
       <div class="col text-center">
         <ul class="nav nav-tabs">
@@ -8,15 +8,18 @@
               class="nav-link"
               :to="{ name: 'Home' }"
               :class="{
-                active: $route.name == 'Home' || $route.name == 'CarDetails'
+                active: $route.name == 'Home'
               }"
-            >Cars</router-link>
+            >Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'Home' }" class="nav-link">Jorbs</router-link>
+            <router-link :to="{ name: 'CarsView' }" class="nav-link">Cars</router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'Home' }" class="nav-link">Houses</router-link>
+            <router-link :to="{ name: 'Houses' }" class="nav-link">Houses</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'Jobs' }" class="nav-link">Jorbs</router-link>
           </li>
         </ul>
       </div>
@@ -28,9 +31,8 @@
 <style>
 #app {
   min-height: 100vh;
-  /* background-color: green; */
-}
-.active {
-  color: green;
+  max-width: 100vw;
+  color: white;
+  background-color: black;
 }
 </style>
